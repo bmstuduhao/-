@@ -1,0 +1,102 @@
+<robot name="4wheel_agv">
+    <link name="base_footprint">
+        <visual>
+            <geometry>
+                <box size="0.0001 0.0001 0.0001" />
+            </geometry>
+        </visual>
+    </link>
+    
+    <link name="dipan">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.08" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="dipan_color">
+                <color rgba="1 0.5 0.5 0.5" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="left_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.0325" length="0.015" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 1.57 0" />
+            <material name="leftwheel_color">
+                <color rgba="1 0 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="right_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.0325" length="0.015" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 -1.57 0" />
+            <material name="rightwheel_color">
+                <color rgba="1 0 0 1" />
+            </material>
+        </visual>
+    </link>
+    <link name="front_wheel">
+        <visual>
+            <geometry>
+                <sphere radius="0.0075" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="frontwheel_color">
+                <color rgba="0 1 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="trailing_wheel">
+        <visual>
+            <geometry>
+                <sphere radius="0.0075" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="trailingwheel_color">
+                <color rgba="0 1 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="dipan2base" type="fixed">
+        <parent link = "base_footprint"/>
+        <child link="dipan"/>
+        <origin xyz="0 0 0.055" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="lw2dp" type="continuous">
+        <parent link="dipan"/>
+        <child link="left_wheel"/>
+        <origin xyz="0.1 0 -0.0225" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <joint name="rw2dp" type="continuous">
+        <parent link="dipan"/>
+        <child link="right_wheel"/>
+        <origin xyz="-0.1 0 -0.0225" rpy="0 0 0"/>
+        <axis xyz="1 0 0"/>
+    </joint>
+
+    <joint name="fw2dp" type="continuous">
+        <parent link="dipan"/>
+        <child link="front_wheel"/>
+        <origin xyz="0 -0.0925 -0.0475" rpy="0 0 0"/>
+        <axis xyz="1 1 1"/>
+    </joint>
+
+    <joint name="tw2dp" type="continuous">
+        <parent link="dipan"/>
+        <child link="trailing_wheel"/>
+        <origin xyz="0 0.0925 -0.0475" rpy="0 0 0"/>
+        <axis xyz="1 1 1"/>
+    </joint>
+</robot>
